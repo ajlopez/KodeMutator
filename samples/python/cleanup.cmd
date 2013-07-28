@@ -1,0 +1,1 @@
+rmdir temp /s /q
