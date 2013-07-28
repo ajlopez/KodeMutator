@@ -14,3 +14,11 @@ var result = kodemutator.mutate(text);
 
 assert.equal(result, text);
 
+// one mutation
+
+var result = kodemutator.mutate(text, { replace: { '+': '-' } });
+
+assert.ok(result)
+assert.notEqual(result, text);
+assert.equal(result.length, text.length);
+assert.ok(result.indexOf('-') > 0);
