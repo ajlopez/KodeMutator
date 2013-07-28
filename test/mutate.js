@@ -64,3 +64,40 @@ function occurs(text, character) {
     return count;
 }
 
+// many mutations, many replacements
+
+var counts1 = [];
+var counts2 = [];
+
+for (var k = 0; k < 100; k++) {
+    var result = kodemutator.mutate(text, { replace: { '+': ['-', '*'] } });
+
+    assert.ok(result)
+    assert.notEqual(result, text);
+    assert.equal(result.length, text.length);
+    assert.equal(occurs(result, '-') + occurs(result, '*'), 1);
+    
+    var position = result.indexOf('-');
+    
+    if (position > 0)
+        if (counts1[position])
+            counts1[position]++;
+        else
+            counts1[position] = 1;     
+    
+    var position = result.indexOf('*');
+    
+    if (position > 0)
+        if (counts2[position])
+            counts2[position]++;
+        else
+            counts2[position] = 1;     
+}
+
+assert.ok(counts1[2] > 0);
+assert.ok(counts1[6] > 0);
+assert.ok(counts1[10] > 0);
+
+assert.ok(counts2[2] > 0);
+assert.ok(counts2[6] > 0);
+assert.ok(counts2[10] > 0);
