@@ -48,6 +48,12 @@ assert.ok(counts[2] > 0);
 assert.ok(counts[6] > 0);
 assert.ok(counts[10] > 0);
 
+// replace not found
+
+var result = kodemutator.mutate(text, { replace: { '*': '/' }});
+assert.ok(result);
+assert.equal(result, text);
+
 function occurs(text, character) {
     var count = 0;
 
